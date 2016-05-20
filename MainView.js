@@ -40,7 +40,11 @@ function fetchBooks(authToken){
 	}).then(function(responseObject){
     books.clear();
     responseObject.map(function(book) {
-      books.add({ title: book.name, votes: book.badges.votes });
+      books.add(new Book({
+        title: book.name,
+        votes: book.badges.votes,
+        voted: book.badges.viewingMemberVoted
+      }));
     });
 		showLoginButton.value = false;
 	}).catch(function(err){
