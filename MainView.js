@@ -1,7 +1,7 @@
 var InterApp = require("FuseJS/InterApp");
 var Observable = require("FuseJS/Observable");
-var Book = require("/components/book.js");
-var config = require('config');
+var Book = require('/components/book.js');
+var config = require('/config');
 
 var books = Observable();
 

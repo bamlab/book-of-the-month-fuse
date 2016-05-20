@@ -1,6 +1,5 @@
 <App Theme="Native">
   <DockPanel>
-    <JavaScript File="config.js" ux:Global="config"/>
     <JavaScript File="MainView.js" />
     <Page Name="booksList">
       <Button Text="Connexion" Clicked="{startTrelloAuth}" />
