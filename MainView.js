@@ -4,6 +4,7 @@ var Book = require('/components/book.js');
 var config = require('/config');
 
 var books = Observable();
+var showLoginButton = Observable(true);
 
 function startTrelloAuth(){
 	var uri = 'https://trello.com/1/authorize?expiration=never';
@@ -37,6 +38,7 @@ function fetchBooks(authToken){
     responseObject.map(function(book) {
       books.add({ title: book.name, votes: book.badges.votes });
     });
+		showLoginButton.value = false;
 	}).catch(function(err){
 		console.error(JSON.stringify(err));
 	});
@@ -49,5 +51,6 @@ InterApp.onReceivedUri = function(uri){
 
 module.exports = {
   books : books,
-  startTrelloAuth: startTrelloAuth
+  startTrelloAuth: startTrelloAuth,
+  showLoginButton: showLoginButton
 };
