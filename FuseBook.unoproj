@@ -1,4 +1,7 @@
 {
+  "Mobile":{
+    "UriScheme": "fusebooks"
+  },
   "RootNamespace":"",
   "Packages": [
         "Fuse.Animations",
