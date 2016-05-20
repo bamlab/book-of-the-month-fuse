@@ -8,7 +8,7 @@
       </WhileTrue>
       <StackPanel ItemSpacing="4" Padding="5">
         <Each Items="{books}">
-          <Panel Padding="5" Color="#EEE" Clicked="{toggleVote}">
+          <Panel Padding="5" Color="#EEE" Clicked="{voteForBook}">
             <Text Value="{title}" TextAlignment="Left"/>
             <Text Value="{votes}" TextAlignment="Right"/>
           </Panel>
