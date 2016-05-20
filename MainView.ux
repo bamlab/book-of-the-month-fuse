@@ -1,5 +1,6 @@
 <App Theme="Native">
   <DockPanel>
+    <FuseJS.LocalNotify ux:Global="LocalNotify" />
     <JavaScript File="MainView.js" />
     <Page Name="booksList">
       <WhileTrue Value="{showLoginButton}">
