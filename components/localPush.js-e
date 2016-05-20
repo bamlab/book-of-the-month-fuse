@@ -2,8 +2,6 @@ var LocalNotify = require("LocalNotify");
 var moment = require("/moment.js");
 
 LocalNotify.onReceivedMessage = function(payload) {
-  console.log('Hello');
-  console.log(computeRemainingSecondsToNextPush());
   console.log ("Recieved Local Notification: " + payload);
   registerNotification();
 };
