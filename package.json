@@ -1,0 +1,23 @@
+{
+  "name": "book-of-the-month-fuse",
+  "version": "0.0.1",
+  "description": "Vote for the book of the month",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamlab/book-of-the-month-fuse.git"
+  },
+  "keywords": [
+    "books",
+    "vote"
+  ],
+  "author": "BAM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bamlab/book-of-the-month-fuse/issues"
+  },
+  "homepage": "https://github.com/bamlab/book-of-the-month-fuse#readme"
+}
