@@ -2,7 +2,9 @@
   <DockPanel>
     <JavaScript File="MainView.js" />
     <Page Name="booksList">
-      <Button Text="Connexion" Clicked="{startTrelloAuth}" />
+      <WhileTrue Value="{showLoginButton}">
+        <Button Text="Connexion" Clicked="{startTrelloAuth}" />
+      </WhileTrue>
       <StackPanel ItemSpacing="4" Padding="5">
         <Each Items="{books}">
           <Panel Padding="5" Color="#EEE" Clicked="{toggleVote}">
