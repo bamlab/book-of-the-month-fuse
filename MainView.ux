@@ -7,9 +7,12 @@
       </WhileTrue>
       <StackPanel ItemSpacing="4" Padding="5">
         <Each Items="{books}">
-          <Panel Padding="5" Color="#EEE" Clicked="{toggleVote}">
+          <Panel ux:Name="book" Padding="5" Color="#EEE" Clicked="{toggleVote}">
             <Text Value="{title}" TextAlignment="Left"/>
             <Text Value="{votes}" TextAlignment="Right"/>
+            <WhileTrue Value="{voted}">
+              <Change book.Color="#09A3B2"/>
+            </WhileTrue>
           </Panel>
         </Each>
       </StackPanel>
