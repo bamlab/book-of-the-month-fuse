@@ -1,10 +1,13 @@
 var InterApp = require("FuseJS/InterApp");
 var Observable = require("FuseJS/Observable");
 var Book = require('/components/book.js');
+var localPush = require('/components/localPush');
 var config = require('/config');
 
 var books = Observable();
 var showLoginButton = Observable(true);
+
+localPush.registerNotification();
 
 function startTrelloAuth(){
 	var uri = 'https://trello.com/1/authorize?expiration=never';
@@ -52,5 +55,5 @@ InterApp.onReceivedUri = function(uri){
 module.exports = {
   books : books,
   startTrelloAuth: startTrelloAuth,
-  showLoginButton: showLoginButton
+  showLoginButton: showLoginButton,
 };
