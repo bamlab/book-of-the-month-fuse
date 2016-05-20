@@ -5,10 +5,10 @@
       <Button Text="Connexion" Clicked="{startTrelloAuth}" />
       <StackPanel ItemSpacing="4" Padding="5">
         <Each Items="{books}">
-            <Panel Padding="5" Color="#EEE" Clicked="{toggleVote}">       
-              <Text Value="{title}" TextAlignment="Left"/>
-              <Text Value="{votes}" TextAlignment="Right"/>
-            </Panel>
+          <Panel Padding="5" Color="#EEE" Clicked="{toggleVote}">
+            <Text Value="{title}" TextAlignment="Left"/>
+            <Text Value="{votes}" TextAlignment="Right"/>
+          </Panel>
         </Each>
       </StackPanel>
     </Page>
