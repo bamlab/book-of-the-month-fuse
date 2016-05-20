@@ -23,9 +23,8 @@ function extractCode(uri){
 }
 
 function getMe(c){
-	var uri = "https://api.trello.com/1/members/guitoof?";
-	uri += "accessToken=" + c;
-	uri += "&accessTokenSecret=24d5315f732bc79f186a5c8d0b4d8bffa47871e2b9b4ce665dcec9ec634562b0";
+	var uri = "https://api.trello.com/1/lists/573ec5ee023afbbe3feb5f86/cards?key=YOUR_API_KEY_HERE&";
+	uri += "token=" + c;
 
 	fetch(uri, {
 		method: "GET",
@@ -35,7 +34,10 @@ function getMe(c){
 		return response.json();
 	}).then(function(responseObject){
     console.log("responseObject", JSON.stringify(responseObject));
-		accessToken.value = responseObject.access_token;
+    books.clear();
+    responseObject.map(function(book) {
+      books.add({title: book.name});
+    });
 	}).catch(function(err){
 		console.log("err", JSON.stringify(err));
 	});
