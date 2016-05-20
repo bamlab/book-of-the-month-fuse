@@ -15,6 +15,7 @@
         "Fuse.Elements",
         "Fuse.Entities",
         "Fuse.Gestures",
+        "Fuse.LocalNotifications",
         "Fuse.Navigation",
         "Fuse.Scripting",
         "Fuse.Shapes",
