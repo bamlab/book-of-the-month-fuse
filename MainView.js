@@ -51,6 +51,7 @@ function fetchBooks(authToken){
 function checkConnexion() {
 	var authToken = storage.readSync('token');
 	if (authToken) {
+		showLoginButton.value = false;
 		fetchBooks(authToken);
 	}
 }
