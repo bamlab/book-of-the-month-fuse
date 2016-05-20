@@ -1,3 +1,15 @@
-<App Theme="Basic">
+<App Theme="Native">
+  <DockPanel>
+    <JavaScript File="MainView.js" />
+    <Page Name="booksList">
+      <StackPanel ItemSpacing="4" Padding="5">
+        <Each Items="{books}">
+            <Panel Padding="5" Color="#EEE" Clicked="{toggleVote}">       
+              <Text Value="{title}" TextAlignment="Left"/>
+              <Text Value="{votes}" TextAlignment="Right"/>
+            </Panel>
+        </Each>
+      </StackPanel>
+    </Page>
+  </DockPanel>
 </App>
-
