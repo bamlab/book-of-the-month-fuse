@@ -26,6 +26,7 @@
         "Uno.Geometry"
   ],
   "Includes": [
-    "*"
+    "*",
+    "**.js:Bundle"
   ]
 }
