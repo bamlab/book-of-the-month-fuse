@@ -1,19 +1,19 @@
 var InterApp = require("FuseJS/InterApp");
 var Observable = require("FuseJS/Observable");
 var Book = require("/components/book.js");
+var config = require('config');
 
-var books = Observable(
-  new Book({title: 'Guerre et paix', votes : 10}),
-  new Book({title: 'Harry Poter', votes : 3}),
-  new Book({title: 'Hello BAM', votes : 10})
-);
+var books = Observable();
 
 function startTrelloAuth(){
-	var uri = "https://trello.com/1/authorize?expiration=never&name=BamBooks&key=58151f6476e5b9823dfddbc8307dbce7&redirect_uri=fusebooks://fusebooks/code";
+	var uri = 'https://trello.com/1/authorize?expiration=never';
+	uri += '&name=' + config.trelloAppName;
+	uri += '&key=' + config.trelloKey;
+	uri += '&redirect_uri=' + config.trelloLoginRedirectUri;
 	InterApp.launchUri(uri);
 }
 
-function extractCode(uri){
+function extractAuthToken(uri){
 	var codeStart = uri.substring(uri.search("code="), uri.length);
 	var codeEnd = codeStart.search("&");
 	if (codeEnd === -1)
@@ -22,31 +22,29 @@ function extractCode(uri){
 	return code;
 }
 
-function getMe(c){
-	var uri = "https://api.trello.com/1/lists/573ec5ee023afbbe3feb5f86/cards?key=58151f6476e5b9823dfddbc8307dbce7&";
-	uri += "token=" + c;
+function fetchBooks(authToken){
+	var uri = 'https://api.trello.com/1/lists/' + config.booksListId + '/cards?';
+	uri += 'key=' + config.trelloKey;
+	uri += '&token=' + authToken;
 
 	fetch(uri, {
 		method: "GET",
 		headers: { "Accept": "application/json"}
 	}).then(function(response){
-    console.log(JSON.stringify(response));
 		return response.json();
 	}).then(function(responseObject){
-    console.log("responseObject", JSON.stringify(responseObject));
     books.clear();
     responseObject.map(function(book) {
-      books.add({title: book.name});
+      books.add({ title: book.name, votes: book.badges.votes });
     });
 	}).catch(function(err){
-		console.log("err", JSON.stringify(err));
+		console.error(JSON.stringify(err));
 	});
 }
 
 InterApp.onReceivedUri = function(uri){
-	var c = extractCode(uri);
-  console.log(c);
-	getMe(c);
+	var authToken = extractAuthToken(uri);
+	fetchBooks(authToken);
 };
 
 module.exports = {
