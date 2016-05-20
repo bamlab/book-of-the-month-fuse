@@ -1,5 +1,6 @@
 var InterApp = require("FuseJS/InterApp");
 var Observable = require("FuseJS/Observable");
+var storage = require('FuseJS/Storage');
 var Book = require('/components/book.js');
 var localPush = require('/components/localPush');
 var config = require('/config');
@@ -47,10 +48,20 @@ function fetchBooks(authToken){
 	});
 }
 
+function checkConnexion() {
+	var authToken = storage.readSync('token');
+	if (authToken) {
+		fetchBooks(authToken);
+	}
+}
+
 InterApp.onReceivedUri = function(uri){
 	var authToken = extractAuthToken(uri);
+	storage.writeSync('token', authToken);
 	fetchBooks(authToken);
 };
+
+checkConnexion()
 
 module.exports = {
   books : books,
